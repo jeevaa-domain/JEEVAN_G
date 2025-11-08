@@ -468,6 +468,200 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
+        /* Home Page Styles */
+        #homePage {
+            position: relative;
+        }
+        
+        #homePage::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('NPR.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+        }
+        
+        #homePage::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(38, 65, 137, 0.7);
+            z-index: -1;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(38, 65, 137, 0.8), rgba(26, 45, 107, 0.9));
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 10px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background-color: var(--dark-color);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .content-section {
+            margin-bottom: 50px;
+        }
+
+        .content-block {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            gap: 30px;
+        }
+
+        .content-block.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .content-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .content-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .content-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .content-text {
+            flex: 1;
+        }
+
+        .content-text h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .content-text p {
+            margin-bottom: 15px;
+        }
+
+        .stats-section {
+            background-color: var(--dark-color);
+            padding: 40px 0;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-weight: bold;
+        }
+
+        .contact-section {
+            background-color: var(--dark-color);
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .contact-info h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 300px;
+            background-color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
         .department-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -527,6 +721,10 @@
                 font-size: 2rem;
             }
             
+            .content-block, .content-block.reverse {
+                flex-direction: column;
+            }
+            
             .department-list {
                 grid-template-columns: 1fr;
             }
@@ -547,6 +745,14 @@
             
             .logo-small h1 {
                 font-size: 1.2rem;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-section p {
+                font-size: 1rem;
             }
         }
 
@@ -572,6 +778,14 @@
                 text-align: center;
                 padding: 8px 5px;
                 font-size: 0.8rem;
+            }
+            
+            .hero-section {
+                padding: 40px 0;
+            }
+            
+            .contact-section {
+                padding: 20px;
             }
         }
     </style>
@@ -630,10 +844,9 @@
                     <h1>NPR PORTAL</h1>
                 </div>
                 <div class="nav-buttons">
-                    <button class="nav-btn" data-page="home">Home</button>
-                    <button class="nav-btn" data-page="about">About</button>
-                    <button class="nav-btn" data-page="research">R&D</button>
-                    <button class="nav-btn" data-page="ug">Departments</button>
+                    <button class="nav-btn" data-page="home">HOME</button>
+                    <button class="nav-btn" data-page="about">ABOUT</button>
+                    <button class="nav-btn" data-page="research">RESEARCH & DEVELOPMENT</button>
                 </div>
             </div>
         </header>
@@ -665,23 +878,143 @@
             <div class="container">
                 <!-- Home Page -->
                 <div class="page active" id="homePage">
-                    <div class="page-header">
-                        <h2>NPR College Availabilities</h2>
-                    </div>
-                    <div class="card">
-                        <h3>Welcome to NPR College Lab Portal</h3>
-                        <p>This portal provides comprehensive information about the laboratory facilities available across various departments at NPR College.</p>
-                        <p>Use the menu to navigate through different sections and explore the resources available.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Recent Updates</h3>
-                        <ul>
-                            <li>New Computer Lab inaugurated in CSE Department</li>
-                            <li>Advanced Research Equipment added to ECE Department</li>
-                            <li>Cybersecurity Lab upgraded with latest tools</li>
-                            <li>Civil Engineering Lab expansion completed</li>
-                        </ul>
-                    </div>
+                    <!-- Hero Section -->
+                    <section class="hero-section">
+                        <h1>Welcome to NPR College of Engineering and Technology</h1>
+                        <p>Excellence in Education, Innovation in Research, Commitment to Society</p>
+                    </section>
+
+                    <!-- Features Grid -->
+                    <section class="feature-grid">
+                        <div class="feature-card">
+                            <i>🎓</i>
+                            <h3>Quality Education</h3>
+                            <p>Providing world-class engineering education with industry-relevant curriculum</p>
+                        </div>
+                        <div class="feature-card">
+                            <i>🔬</i>
+                            <h3>Research & Innovation</h3>
+                            <p>Fostering innovation through cutting-edge research and development</p>
+                        </div>
+                        <div class="feature-card">
+                            <i>🏢</i>
+                            <h3>Modern Infrastructure</h3>
+                            <p>State-of-the-art laboratories and facilities for hands-on learning</p>
+                        </div>
+                    </section>
+
+                    <!-- Content Sections with Images -->
+                    <section class="content-section">
+                        <div class="content-block">
+                            <div class="content-image">
+                                <img src="images 1.jpg" alt="NPR College Campus">
+                            </div>
+                            <div class="content-text">
+                                <h3>Our Campus</h3>
+                                <p>Spread across 50 acres of lush greenery, NPR College provides a serene and conducive environment for learning and innovation. Our campus is equipped with modern infrastructure that supports both academic and extracurricular activities.</p>
+                                <p>The campus includes well-equipped laboratories, a comprehensive library, sports facilities, and comfortable hostels for students.</p>
+                            </div>
+                        </div>
+
+                        <div class="content-block reverse">
+                            <div class="content-image">
+                                <img src="images 2.jpg" alt="Academic Programs">
+                            </div>
+                            <div class="content-text">
+                                <h3>Academic Excellence</h3>
+                                <p>NPR College offers a wide range of undergraduate, postgraduate, and doctoral programs in engineering and technology. Our curriculum is designed to meet industry requirements while fostering innovation and research.</p>
+                                <p>We focus on holistic development, ensuring our graduates are not only technically proficient but also possess strong ethical values and leadership qualities.</p>
+                            </div>
+                        </div>
+
+                        <div class="content-block">
+                            <div class="content-image">
+                                <img src="images 3.jpeg" alt="Laboratory Facilities">
+                            </div>
+                            <div class="content-text">
+                                <h3>Laboratory Facilities</h3>
+                                <p>Our college boasts state-of-the-art laboratories across all departments, equipped with the latest technology and equipment. These facilities provide students with hands-on experience and opportunities for research and innovation.</p>
+                                <p>From advanced computing labs to specialized engineering workshops, we ensure our students have access to the best resources for their academic and research pursuits.</p>
+                            </div>
+                        </div>
+
+                        <div class="content-block reverse">
+                            <div class="content-image">
+                                <img src="images 4.jpeg" alt="Placement Opportunities">
+                            </div>
+                            <div class="content-text">
+                                <h3>Placement & Career Opportunities</h3>
+                                <p>NPR College has an excellent placement record with students being recruited by top companies in India and abroad. Our dedicated placement cell works tirelessly to connect students with the best career opportunities.</p>
+                                <p>We provide comprehensive training in soft skills, technical aptitude, and interview techniques to prepare students for successful careers.</p>
+                            </div>
+                        </div>
+
+                        <div class="content-block">
+                            <div class="content-image">
+                                <img src="images 5.jpeg" alt="Student Life">
+                            </div>
+                            <div class="content-text">
+                                <h3>Student Life & Activities</h3>
+                                <p>Beyond academics, NPR College offers a vibrant campus life with numerous clubs, societies, and events. Students can participate in technical festivals, cultural events, sports competitions, and community service initiatives.</p>
+                                <p>These activities help in the overall personality development of students and create a well-rounded educational experience.</p>
+                            </div>
+                        </div>
+
+                        <div class="content-block reverse">
+                            <div class="content-image">
+                                <img src="images 6.jpg" alt="Research & Development">
+                            </div>
+                            <div class="content-text">
+                                <h3>Research & Development</h3>
+                                <p>Our faculty and students are actively engaged in cutting-edge research across various domains. The college encourages interdisciplinary research and collaboration with industry partners.</p>
+                                <p>We have established research centers in emerging areas like Artificial Intelligence, Renewable Energy, and Advanced Materials to address contemporary challenges.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Statistics Section -->
+                    <section class="stats-section">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <h3>20+</h3>
+                                <p>Years of Excellence</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>50+</h3>
+                                <p>Faculty Members</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>2000+</h3>
+                                <p>Students</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>15+</h3>
+                                <p>Departments</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Contact Section -->
+                    <section class="contact-section">
+                        <h2 class="page-header">Contact Us</h2>
+                        <div class="contact-grid">
+                            <div class="contact-info">
+                                <h3>NPR College of Engineering and Technology</h3>
+                                <p><i>📍</i> Natham, Dindigul District, Tamil Nadu - 624401</p>
+                                <p><i>📞</i> +91 451 123 4567</p>
+                                <p><i>📧</i> info@nprcet.edu.in</p>
+                                <p><i>🌐</i> www.nprcet.edu.in</p>
+                                
+                                <h3 style="margin-top: 20px;">Office Hours</h3>
+                                <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+                                <p>Saturday: 9:00 AM - 1:00 PM</p>
+                                <p>Sunday: Closed</p>
+                            </div>
+                            <div class="map-container">
+                                <p>Map Location - NPR College Campus</p>
+                            </div>
+                        </div>
+                    </section>
                 </div>
 
                 <!-- About Page -->
