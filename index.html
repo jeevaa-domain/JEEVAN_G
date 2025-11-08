@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>PORTAL BY TEAM ELITE</title>
+    <link rel="icon" href="NPR LOGO.jpg" type="image/jpeg">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #264189; /* Dark Blue */
+            --secondary-color: #F0B823; /* Yellow/Golden */
+            --accent-color: #858FA4; /* Light bluish gray */
+            --text-color: #FAFAFA; /* White */
+            --light-color: #f9f9f9;
+            --dark-color: #1a2d6b;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            height: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100%;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Logo Page */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .logo {
+            text-align: center;
+            color: white;
+        }
+
+        .logo img {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        .logo h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInFromTop 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideInFromTop {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInFromBottom {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideInFromLeft {
+            0% { transform: translateX(-100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInFromRight {
+            0% { transform: translateX(100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* Login Page */
+        .login-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('NPR.jpg');
+            background-size: cover;
+            background-position: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .login-form {
+            background-color: rgba(38, 65, 137, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            width: 90%;
+            max-width: 400px;
+            animation: slideInFromBottom 0.8s ease-out;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        .password-container {
+            position: relative;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            user-select: none;
+            font-size: 1.2rem;
+        }
+
+        #password {
+            padding-right: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--accent-color);
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            font-size: 16px; /* Prevents iOS zoom on focus */
+        }
+
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .captcha {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 5px;
+            background-color: var(--accent-color);
+            padding: 10px;
+            border-radius: 5px;
+            margin-right: 10px;
+            user-select: none;
+            color: var(--primary-color);
+        }
+
+        .refresh-captcha {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .refresh-captcha:active {
+            transform: scale(0.95);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            font-weight: bold;
+        }
+
+        .login-btn:hover {
+            background-color: #e0a920;
+        }
+
+        .login-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Main Portal */
+        .portal {
+            display: none;
+        }
+
+        /* Header */
+        .header {
+            background-color: goldenrod;
+            color: white;
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: var(--header-height);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo-small {
+            display: flex;
+            align-items: center;
+            margin-left: 50px;
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            color: orangered;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            left: 15px;
+            padding: 5px;
+            transition: transform 0.3s;
+        }
+
+        .menu-btn:active {
+            transform: scale(0.9);
+        }
+
+        .logo-small img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .logo-small h1 {
+            font-size: 1.5rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--dark-color);
+            box-shadow: var(--shadow);
+            transition: left 0.3s ease;
+            z-index: 200;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: linear-gradient(to right, var(--primary-color), var(--dark-color));
+            color: white;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            transition: transform 0.3s;
+        }
+
+        .close-btn:active {
+            transform: scale(0.9);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-menu li {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 15px;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-menu a:active {
+            background-color: var(--accent-color);
+        }
+
+        .dropdown-menu {
+            list-style: none;
+            padding-left: 20px;
+            display: none;
+            animation: slideInFromLeft 0.3s ease-out;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dropdown-toggle::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .dropdown-toggle.active::after {
+            content: "▲";
+            transform: rotate(180deg);
+        }
+
+        .logout-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            text-align: left;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .logout-btn:active {
+            background-color: #e0a920;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 20px 0;
+            min-height: calc(100vh - var(--header-height) - 80px);
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page-header {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+            animation: slideInFromTop 0.8s ease-out;
+        }
+
+        .card {
+            background-color: var(--dark-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+            animation: slideInFromBottom 0.8s ease-out;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .department-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .department-card {
+            background-color: var(--dark-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .department-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .department-card:active {
+            animation: bounce 0.5s;
+        }
+
+        .department-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* iOS-specific optimizations */
+        @supports (-webkit-touch-callout: none) {
+            .login-form {
+                -webkit-backdrop-filter: blur(10px);
+            }
+            
+            .sidebar {
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+            
+            .menu-btn, .close-btn, .nav-btn, .login-btn, .refresh-captcha {
+                -webkit-appearance: none;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo h1 {
+                font-size: 2rem;
+            }
+            
+            .department-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                width: 100%;
+                left: -100%;
+            }
+            
+            .nav-buttons {
+                gap: 8px;
+            }
+            
+            .nav-btn {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .logo-small h1 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-content {
+                flex-direction: column;
+                height: auto;
+                padding: 10px 0;
+            }
+            
+            .logo-small {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+            
+            .nav-buttons {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .nav-btn {
+                flex: 1;
+                text-align: center;
+                padding: 8px 5px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo Page -->
+    <div class="logo-container" id="logoPage">
+        <div class="logo">
+            <img src="NPR LOGO.jpg" alt="NPR Logo">
+            <h1>NPR PORTAL</h1>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <div class="login-form">
+            <h2>Login to NPR Portal</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group password-container">
+                    <label for="password">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" required>
+                        <span class="toggle-password" id="togglePassword">👁️</span>
+                    </div>
+                </div>
+                <div class="captcha-container">
+                    <div class="captcha" id="captchaText">ABCD</div>
+                    <button type="button" class="refresh-captcha" id="refreshCaptcha">↻</button>
+                </div>
+                <div class="form-group">
+                    <label for="captchaInput">Enter Captcha</label>
+                    <input type="text" id="captchaInput" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            <div style="margin-top: 15px; font-size: 0.9rem; text-align: center;">
+                <p>Demo Credentials:</p>
+                <p>Username: admin / faculty / student</p>
+                <p>Password: npr2024</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Portal -->
+    <div class="portal" id="portal">
+        <!-- Header -->
+        <header class="header">
+            <div class="container header-content">
+                <button class="menu-btn" id="menuBtn">☰</button>
+                <div class="logo-small">
+                    <img src="NPR LOGO.jpg" alt="NPR Logo">
+                    <h1>NPR PORTAL</h1>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn" data-page="home">Home</button>
+                    <button class="nav-btn" data-page="about">About</button>
+                    <button class="nav-btn" data-page="research">R&D</button>
+                    <button class="nav-btn" data-page="ug">Departments</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar Menu -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Menu</h2>
+                <button class="close-btn" id="closeBtn">×</button>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="menu-link" data-page="home">Home</a></li>
+                <li><a href="#" class="menu-link" data-page="about">About</a></li>
+                <li><a href="#" class="menu-link" data-page="research">Student & Staff R&D</a></li>
+                <li>
+                    <a href="#" class="dropdown-toggle" id="deptToggle">Departments</a>
+                    <ul class="dropdown-menu" id="deptMenu">
+                        <li><a href="#" class="menu-link" data-page="ug">UG Departments</a></li>
+                        <li><a href="#" class="menu-link" data-page="pg">PG Departments</a></li>
+                        <li><a href="#" class="menu-link" data-page="phd">PhD Departments</a></li>
+                    </ul>
+                </li>
+                <li><button class="logout-btn" id="logoutBtn">Logout</button></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <!-- Home Page -->
+                <div class="page active" id="homePage">
+                    <div class="page-header">
+                        <h2>NPR College Availabilities</h2>
+                    </div>
+                    <div class="card">
+                        <h3>Welcome to NPR College Lab Portal</h3>
+                        <p>This portal provides comprehensive information about the laboratory facilities available across various departments at NPR College.</p>
+                        <p>Use the menu to navigate through different sections and explore the resources available.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Recent Updates</h3>
+                        <ul>
+                            <li>New Computer Lab inaugurated in CSE Department</li>
+                            <li>Advanced Research Equipment added to ECE Department</li>
+                            <li>Cybersecurity Lab upgraded with latest tools</li>
+                            <li>Civil Engineering Lab expansion completed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- About Page -->
+                <div class="page" id="aboutPage">
+                    <div class="page-header">
+                        <h2>About NPR College</h2>
+                    </div>
+                    <div class="card">
+                        <h3>College Details</h3>
+                        <p>NPR College of Engineering and Technology is a premier institution committed to providing quality education in engineering and technology.</p>
+                        <p>Established in 2001, the college has grown to become one of the leading institutions in the region with state-of-the-art infrastructure and experienced faculty.</p>
+                    </div>
+                    <div class="card">
+                        <h3>College Features</h3>
+                        <ul>
+                            <li>Modern infrastructure with well-equipped laboratories</li>
+                            <li>Highly qualified and experienced faculty</li>
+                            <li>Industry-oriented curriculum</li>
+                            <li>Placement assistance and career guidance</li>
+                            <li>Research and development opportunities</li>
+                            <li>Sports and extracurricular facilities</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>College Location</h3>
+                        <p>NPR College is located in a serene environment at:</p>
+                        <p>Natham, Dindigul District, Tamil Nadu - 624401</p>
+                        <p>The campus spreads over 50 acres with lush greenery and modern facilities.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Staff Counts (Department Wise)</h3>
+                        <ul>
+                            <li>S&H: 25 faculty members</li>
+                            <li>CSE: 30 faculty members</li>
+                            <li>IT: 20 faculty members</li>
+                            <li>ECE: 28 faculty members</li>
+                            <li>EEE: 22 faculty members</li>
+                            <li>Civil: 18 faculty members</li>
+                            <li>Mech: 20 faculty members</li>
+                            <li>AIML: 15 faculty members</li>
+                            <li>AIDS: 12 faculty members</li>
+                            <li>Cybersecurity: 10 faculty members</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Research Page -->
+                <div class="page" id="researchPage">
+                    <div class="page-header">
+                        <h2>Student & Staff R&D</h2>
+                    </div>
+                    <div class="card">
+                        <h3>Student Research</h3>
+                        <p>Our students are actively involved in cutting-edge research across various domains:</p>
+                        <ul>
+                            <li>AI-based agricultural monitoring system</li>
+                            <li>Smart healthcare solutions using IoT</li>
+                            <li>Renewable energy optimization</li>
+                            <li>Cybersecurity threat detection</li>
+                            <li>Advanced materials for construction</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Staff Research</h3>
+                        <p>Our faculty members are engaged in innovative research projects:</p>
+                        <ul>
+                            <li>Dr. R. Kumar - Machine Learning for Medical Diagnosis</li>
+                            <li>Dr. S. Priya - Renewable Energy Systems</li>
+                            <li>Dr. M. Rajan - Network Security Protocols</li>
+                            <li>Dr. A. Sharma - Structural Engineering Innovations</li>
+                            <li>Dr. K. Verma - IoT Applications in Agriculture</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Publications</h3>
+                        <p>Recent publications from NPR College:</p>
+                        <ul>
+                            <li>"Deep Learning Approaches for Crop Disease Detection" - IEEE Access</li>
+                            <li>"Optimization of Solar Panel Efficiency" - Renewable Energy Journal</li>
+                            <li>"Secure Data Transmission in IoT Networks" - Computer Networks</li>
+                            <li>"Advanced Concrete Composites" - Construction and Building Materials</li>
+                            <li>"AI in Healthcare Diagnostics" - Medical Engineering & Physics</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Awards</h3>
+                        <p>Recognition and awards received by NPR College:</p>
+                        <ul>
+                            <li>Best Engineering College Award 2022</li>
+                            <li>Excellence in Research Award 2021</li>
+                            <li>Innovation in Teaching Methodology Award 2020</li>
+                            <li>Best Industry-Academia Collaboration 2019</li>
+                            <li>Green Campus Award 2018</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- UG Departments Page -->
+                <div class="page" id="ugPage">
+                    <div class="page-header">
+                        <h2>UG Departments</h2>
+                    </div>
+                    <div class="department-list">
+                        <div class="department-card" data-dept="sh">
+                            <h3>S&H</h3>
+                            <p>Science and Humanities Department</p>
+                        </div>
+                        <div class="department-card" data-dept="aiml">
+                            <h3>AIML</h3>
+                            <p>Artificial Intelligence and Machine Learning</p>
+                        </div>
+                        <div class="department-card" data-dept="aids">
+                            <h3>AIDS</h3>
+                            <p>Artificial Intelligence and Data Science</p>
+                        </div>
+                        <div class="department-card" data-dept="cse">
+                            <h3>CSE</h3>
+                            <p>Computer Science and Engineering</p>
+                        </div>
+                        <div class="department-card" data-dept="cybersecurity">
+                            <h3>Cybersecurity</h3>
+                            <p>Cybersecurity Department</p>
+                        </div>
+                        <div class="department-card" data-dept="civil">
+                            <h3>Civil</h3>
+                            <p>Civil Engineering</p>
+                        </div>
+                        <div class="department-card" data-dept="ece">
+                            <h3>ECE</h3>
+                            <p>Electronics and Communication Engineering</p>
+                        </div>
+                        <div class="department-card" data-dept="eee">
+                            <h3>EEE</h3>
+                            <p>Electrical and Electronics Engineering</p>
+                        </div>
+                        <div class="department-card" data-dept="it">
+                            <h3>IT</h3>
+                            <p>Information Technology</p>
+                        </div>
+                        <div class="department-card" data-dept="mech">
+                            <h3>Mech</h3>
+                            <p>Mechanical Engineering</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PG Departments Page -->
+                <div class="page" id="pgPage">
+                    <div class="page-header">
+                        <h2>PG Departments</h2>
+                    </div>
+                    <div class="department-list">
+                        <div class="department-card" data-dept="mca">
+                            <h3>MCA</h3>
+                            <p>Master of Computer Applications</p>
+                        </div>
+                        <div class="department-card" data-dept="mtech-cse">
+                            <h3>M.Tech CSE</h3>
+                            <p>Master of Technology in Computer Science</p>
+                        </div>
+                        <div class="department-card" data-dept="mtech-ece">
+                            <h3>M.Tech ECE</h3>
+                            <p>Master of Technology in Electronics</p>
+                        </div>
+                        <div class="department-card" data-dept="mba">
+                            <h3>MBA</h3>
+                            <p>Master of Business Administration</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PhD Departments Page -->
+                <div class="page" id="phdPage">
+                    <div class="page-header">
+                        <h2>PhD Departments</h2>
+                    </div>
+                    <div class="department-list">
+                        <div class="department-card" data-dept="phd-cse">
+                            <h3>PhD CSE</h3>
+                            <p>Doctorate in Computer Science</p>
+                        </div>
+                        <div class="department-card" data-dept="phd-ece">
+                            <h3>PhD ECE</h3>
+                            <p>Doctorate in Electronics</p>
+                        </div>
+                        <div class="department-card" data-dept="phd-civil">
+                            <h3>PhD Civil</h3>
+                            <p>Doctorate in Civil Engineering</p>
+                        </div>
+                        <div class="department-card" data-dept="phd-mech">
+                            <h3>PhD Mech</h3>
+                            <p>Doctorate in Mechanical Engineering</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Department Details Page -->
+                <div class="page" id="deptDetailsPage">
+                    <div class="page-header">
+                        <h2 id="deptDetailsTitle">Department Details</h2>
+                    </div>
+                    <div class="card">
+                        <h3>Laboratory Details</h3>
+                        <div id="labDetails">
+                            <!-- Lab details will be populated here -->
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Facilities</h3>
+                        <div id="facilitiesDetails">
+                            <!-- Facilities details will be populated here -->
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Repair Service Challans</h3>
+                        <div id="repairDetails">
+                            <!-- Repair details will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2023 NPR College of Engineering and Technology. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Valid login credentials
+        const validCredentials = [
+            { username: 'admin', password: 'npr2024' },
+            { username: 'faculty', password: 'npr2024' },
+            { username: 'student', password: 'npr2024' }
+        ];
+
+        // Department data
+        const departmentData = {
+            // UG Departments
+            'sh': {
+                name: 'Science and Humanities',
+                labs: [
+                    { name: 'Physics Lab', systems: 25, description: 'Equipped with modern physics experimentation equipment' },
+                    { name: 'Chemistry Lab', systems: 30, description: 'Well-equipped for chemical analysis and experiments' },
+                    { name: 'Mathematics Lab', systems: 20, description: 'Computational mathematics and modeling' }
+                ],
+                facilities: [
+                    'Advanced instrumentation',
+                    'Digital measurement tools',
+                    'Research-grade equipment'
+                ],
+                repairs: [
+                    { id: 'SH001', date: '2023-05-15', description: 'Spectrophotometer calibration', status: 'Completed' },
+                    { id: 'SH002', date: '2023-06-20', description: 'Microscope lens replacement', status: 'In Progress' }
+                ]
+            },
+            'aiml': {
+                name: 'Artificial Intelligence and Machine Learning',
+                labs: [
+                    { name: 'AI Lab', systems: 40, description: 'High-performance computing for AI algorithms' },
+                    { name: 'Machine Learning Lab', systems: 35, description: 'Dedicated systems for ML model training' }
+                ],
+                facilities: [
+                    'GPU-enabled workstations',
+                    'AI development frameworks',
+                    'Large datasets repository'
+                ],
+                repairs: [
+                    { id: 'AIML001', date: '2023-07-10', description: 'GPU server maintenance', status: 'Completed' },
+                    { id: 'AIML002', date: '2023-08-05', description: 'Network switch upgrade', status: 'Pending' }
+                ]
+            },
+            'aids': {
+                name: 'Artificial Intelligence and Data Science',
+                labs: [
+                    { name: 'Data Science Lab', systems: 35, description: 'Data analysis and visualization tools' },
+                    { name: 'Big Data Lab', systems: 25, description: 'Hadoop and Spark clusters for big data processing' }
+                ],
+                facilities: [
+                    'High-performance computing clusters',
+                    'Data visualization software',
+                    'Cloud computing resources'
+                ],
+                repairs: [
+                    { id: 'AIDS001', date: '2023-06-25', description: 'Server storage expansion', status: 'Completed' },
+                    { id: 'AIDS002', date: '2023-08-10', description: 'Software license renewal', status: 'In Progress' }
+                ]
+            },
+            'cse': {
+                name: 'Computer Science and Engineering',
+                labs: [
+                    { name: 'Programming Lab', systems: 60, description: 'Software development environment' },
+                    { name: 'Networking Lab', systems: 30, description: 'Computer networks and communication' },
+                    { name: 'Database Lab', systems: 40, description: 'Database management systems' }
+                ],
+                facilities: [
+                    'High-speed internet',
+                    'Latest software tools',
+                    'Server infrastructure'
+                ],
+                repairs: [
+                    { id: 'CSE001', date: '2023-06-12', description: 'Server rack maintenance', status: 'Completed' },
+                    { id: 'CSE002', date: '2023-07-18', description: 'UPS battery replacement', status: 'Completed' }
+                ]
+            },
+            'cybersecurity': {
+                name: 'Cybersecurity',
+                labs: [
+                    { name: 'Cyber Lab', systems: 30, description: 'Cybersecurity tools and simulation environment' },
+                    { name: 'Forensics Lab', systems: 25, description: 'Digital forensics and investigation tools' }
+                ],
+                facilities: [
+                    'Isolated network environment',
+                    'Security testing tools',
+                    'Incident response simulation'
+                ],
+                repairs: [
+                    { id: 'CYB001', date: '2023-07-05', description: 'Firewall firmware update', status: 'Completed' },
+                    { id: 'CYB002', date: '2023-08-15', description: 'Security software update', status: 'Pending' }
+                ]
+            },
+            'civil': {
+                name: 'Civil Engineering',
+                labs: [
+                    { name: 'Structural Lab', systems: 20, description: 'Structural analysis and testing equipment' },
+                    { name: 'Surveying Lab', systems: 15, description: 'Land surveying and measurement instruments' },
+                    { name: 'Concrete Lab', systems: 25, description: 'Concrete testing and analysis' }
+                ],
+                facilities: [
+                    'Universal testing machines',
+                    'Advanced surveying equipment',
+                    'Material testing instruments'
+                ],
+                repairs: [
+                    { id: 'CIV001', date: '2023-05-20', description: 'Testing machine calibration', status: 'Completed' },
+                    { id: 'CIV002', date: '2023-07-25', description: 'Survey equipment maintenance', status: 'In Progress' }
+                ]
+            },
+            'ece': {
+                name: 'Electronics and Communication Engineering',
+                labs: [
+                    { name: 'Electronics Lab', systems: 40, description: 'Electronic circuit design and testing' },
+                    { name: 'Communication Lab', systems: 35, description: 'Communication systems and signal processing' },
+                    { name: 'VLSI Lab', systems: 25, description: 'VLSI design and fabrication' }
+                ],
+                facilities: [
+                    'Oscilloscopes and signal generators',
+                    'Communication system simulators',
+                    'VLSI design software'
+                ],
+                repairs: [
+                    { id: 'ECE001', date: '2023-06-08', description: 'Oscilloscope calibration', status: 'Completed' },
+                    { id: 'ECE002', date: '2023-08-12', description: 'Signal generator repair', status: 'Pending' }
+                ]
+            },
+            'eee': {
+                name: 'Electrical and Electronics Engineering',
+                labs: [
+                    { name: 'Power Systems Lab', systems: 30, description: 'Electrical power systems analysis' },
+                    { name: 'Control Systems Lab', systems: 25, description: 'Control systems and automation' },
+                    { name: 'Electrical Machines Lab', systems: 20, description: 'Electrical machines testing' }
+                ],
+                facilities: [
+                    'Power system simulators',
+                    'Control system hardware',
+                    'Electrical measurement instruments'
+                ],
+                repairs: [
+                    { id: 'EEE001', date: '2023-05-30', description: 'Transformer maintenance', status: 'Completed' },
+                    { id: 'EEE002', date: '2023-07-22', description: 'Motor controller upgrade', status: 'In Progress' }
+                ]
+            },
+            'it': {
+                name: 'Information Technology',
+                labs: [
+                    { name: 'Web Technology Lab', systems: 45, description: 'Web development and design tools' },
+                    { name: 'Software Engineering Lab', systems: 35, description: 'Software development lifecycle tools' },
+                    { name: 'Mobile Computing Lab', systems: 30, description: 'Mobile application development' }
+                ],
+                facilities: [
+                    'Latest development frameworks',
+                    'Mobile device testing',
+                    'Project management tools'
+                ],
+                repairs: [
+                    { id: 'IT001', date: '2023-06-18', description: 'Software license update', status: 'Completed' },
+                    { id: 'IT002', date: '2023-08-08', description: 'Mobile device replacement', status: 'Completed' }
+                ]
+            },
+            'mech': {
+                name: 'Mechanical Engineering',
+                labs: [
+                    { name: 'Thermodynamics Lab', systems: 25, description: 'Thermal systems and heat transfer' },
+                    { name: 'CAD/CAM Lab', systems: 40, description: 'Computer-aided design and manufacturing' },
+                    { name: 'Dynamics Lab', systems: 20, description: 'Mechanical dynamics and vibrations' }
+                ],
+                facilities: [
+                    'CAD software licenses',
+                    '3D printing and prototyping',
+                    'Vibration analysis equipment'
+                ],
+                repairs: [
+                    { id: 'MECH001', date: '2023-06-05', description: '3D printer maintenance', status: 'Completed' },
+                    { id: 'MECH002', date: '2023-08-20', description: 'CAD software update', status: 'Pending' }
+                ]
+            },
+            // PG Departments
+            'mca': {
+                name: 'Master of Computer Applications',
+                labs: [
+                    { name: 'Advanced Programming Lab', systems: 50, description: 'Advanced software development environment' },
+                    { name: 'Database Management Lab', systems: 35, description: 'Advanced database systems' }
+                ],
+                facilities: [
+                    'Enterprise software tools',
+                    'Advanced database systems',
+                    'Project development environment'
+                ],
+                repairs: [
+                    { id: 'MCA001', date: '2023-07-15', description: 'Software license renewal', status: 'Completed' },
+                    { id: 'MCA002', date: '2023-08-25', description: 'Server maintenance', status: 'In Progress' }
+                ]
+            },
+            'mtech-cse': {
+                name: 'M.Tech Computer Science',
+                labs: [
+                    { name: 'Research Lab', systems: 30, description: 'Advanced computing research environment' },
+                    { name: 'Specialization Lab', systems: 25, description: 'Domain-specific computing resources' }
+                ],
+                facilities: [
+                    'Research computing resources',
+                    'Specialized software tools',
+                    'Thesis support environment'
+                ],
+                repairs: [
+                    { id: 'MTECH001', date: '2023-06-28', description: 'Research software update', status: 'Completed' },
+                    { id: 'MTECH002', date: '2023-08-18', description: 'Computing cluster upgrade', status: 'Pending' }
+                ]
+            },
+            'mtech-ece': {
+                name: 'M.Tech Electronics',
+                labs: [
+                    { name: 'Advanced Electronics Lab', systems: 25, description: 'Advanced electronic systems design' },
+                    { name: 'Research Lab', systems: 20, description: 'Electronics research and development' }
+                ],
+                facilities: [
+                    'Advanced measurement instruments',
+                    'Research-grade equipment',
+                    'Specialized design software'
+                ],
+                repairs: [
+                    { id: 'MTECHE001', date: '2023-07-08', description: 'Equipment calibration', status: 'Completed' },
+                    { id: 'MTECHE002', date: '2023-08-22', description: 'Research software license', status: 'In Progress' }
+                ]
+            },
+            'mba': {
+                name: 'Master of Business Administration',
+                labs: [
+                    { name: 'Business Analytics Lab', systems: 40, description: 'Business data analysis and visualization' },
+                    { name: 'Simulation Lab', systems: 30, description: 'Business scenario simulation' }
+                ],
+                facilities: [
+                    'Business intelligence tools',
+                    'Case study databases',
+                    'Simulation software'
+                ],
+                repairs: [
+                    { id: 'MBA001', date: '2023-06-14', description: 'Software update', status: 'Completed' },
+                    { id: 'MBA002', date: '2023-08-28', description: 'Database maintenance', status: 'Pending' }
+                ]
+            },
+            // PhD Departments
+            'phd-cse': {
+                name: 'PhD Computer Science',
+                labs: [
+                    { name: 'Doctoral Research Lab', systems: 20, description: 'Advanced computing research environment' },
+                    { name: 'Thesis Lab', systems: 15, description: 'Thesis writing and research support' }
+                ],
+                facilities: [
+                    'High-performance computing',
+                    'Research publication support',
+                    'International journal access'
+                ],
+                repairs: [
+                    { id: 'PHDCSE001', date: '2023-07-20', description: 'Research software update', status: 'Completed' },
+                    { id: 'PHDCSE002', date: '2023-09-05', description: 'Computing resource expansion', status: 'In Progress' }
+                ]
+            },
+            'phd-ece': {
+                name: 'PhD Electronics',
+                labs: [
+                    { name: 'Advanced Research Lab', systems: 18, description: 'Cutting-edge electronics research' },
+                    { name: 'Thesis Support Lab', systems: 12, description: 'Doctoral research support environment' }
+                ],
+                facilities: [
+                    'Specialized research equipment',
+                    'International collaboration tools',
+                    'Publication support'
+                ],
+                repairs: [
+                    { id: 'PHDECE001', date: '2023-07-25', description: 'Research equipment maintenance', status: 'Completed' },
+                    { id: 'PHDECE002', date: '2023-09-10', description: 'Lab infrastructure upgrade', status: 'Pending' }
+                ]
+            },
+            'phd-civil': {
+                name: 'PhD Civil Engineering',
+                labs: [
+                    { name: 'Structural Research Lab', systems: 15, description: 'Advanced structural engineering research' },
+                    { name: 'Materials Lab', systems: 12, description: 'Advanced materials research' }
+                ],
+                facilities: [
+                    'Advanced testing equipment',
+                    'Research publication support',
+                    'International standards access'
+                ],
+                repairs: [
+                    { id: 'PHDCIV001', date: '2023-07-30', description: 'Testing equipment calibration', status: 'Completed' },
+                    { id: 'PHDCIV002', date: '2023-09-15', description: 'Research material procurement', status: 'In Progress' }
+                ]
+            },
+            'phd-mech': {
+                name: 'PhD Mechanical Engineering',
+                labs: [
+                    { name: 'Advanced Dynamics Lab', systems: 16, description: 'Advanced mechanical systems research' },
+                    { name: 'Thermal Research Lab', systems: 14, description: 'Advanced thermal systems research' }
+                ],
+                facilities: [
+                    'Advanced simulation software',
+                    'Research-grade instrumentation',
+                    'International journal access'
+                ],
+                repairs: [
+                    { id: 'PHDMECH001', date: '2023-08-05', description: 'Simulation software update', status: 'Completed' },
+                    { id: 'PHDMECH002', date: '2023-09-20', description: 'Research equipment maintenance', status: 'Pending' }
+                ]
+            }
+        };
+
+        // Page navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show logo page initially
+            setTimeout(() => {
+                document.getElementById('logoPage').style.display = 'none';
+                document.getElementById('loginPage').style.display = 'flex';
+            }, 3000);
+
+            // Generate random captcha
+            function generateCaptcha() {
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                let captcha = '';
+                for (let i = 0; i < 6; i++) {
+                    captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                document.getElementById('captchaText').textContent = captcha;
+            }
+
+            generateCaptcha();
+            // Toggle password visibility
+            document.getElementById('togglePassword').addEventListener('click', function() {
+                const passwordInput = document.getElementById('password');
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.textContent = type === 'password' ? '👁️' : '👁️';
+            });
+
+            // Refresh captcha
+            document.getElementById('refreshCaptcha').addEventListener('click', generateCaptcha);
+
+            // Login form submission
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const captchaInput = document.getElementById('captchaInput').value;
+                const captchaText = document.getElementById('captchaText').textContent;
+
+                // Check credentials
+                const isValidUser = validCredentials.some(cred => 
+                    cred.username === username && cred.password === password
+                );
+
+                if (isValidUser && captchaInput === captchaText) {
+                    document.getElementById('loginPage').style.display = 'none';
+                    document.getElementById('portal').style.display = 'block';
+                } else {
+                    alert('Invalid username, password or captcha. Please try again.');
+                    generateCaptcha();
+                }
+            });
+
+            // Menu toggle
+            document.getElementById('menuBtn').addEventListener('click', function() {
+                document.getElementById('sidebar').classList.add('active');
+            });
+
+            document.getElementById('closeBtn').addEventListener('click', function() {
+                document.getElementById('sidebar').classList.remove('active');
+            });
+
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                document.getElementById('portal').style.display = 'none';
+                document.getElementById('loginPage').style.display = 'flex';
+                document.getElementById('sidebar').classList.remove('active');
+                document.getElementById('loginForm').reset();
+                generateCaptcha();
+            });
+
+            // Department dropdown toggle
+            document.getElementById('deptToggle').addEventListener('click', function(e) {
+                e.preventDefault();
+                this.classList.toggle('active');
+                document.getElementById('deptMenu').classList.toggle('active');
+            });
+
+            // Page navigation
+            const menuLinks = document.querySelectorAll('.menu-link');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Hide all pages
+                    document.querySelectorAll('.page').forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    
+                    // Show target page
+                    document.getElementById(targetPage + 'Page').classList.add('active');
+                    
+                    // Close sidebar on mobile
+                    document.getElementById('sidebar').classList.remove('active');
+                });
+            });
+
+            // Department card click
+            const departmentCards = document.querySelectorAll('.department-card');
+            departmentCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const deptCode = this.getAttribute('data-dept');
+                    const deptData = departmentData[deptCode];
+                    
+                    if (deptData) {
+                        // Update department details page
+                        document.getElementById('deptDetailsTitle').textContent = deptData.name;
+                        
+                        // Populate lab details
+                        let labHTML = '';
+                        deptData.labs.forEach(lab => {
+                            labHTML += `
+                                <div style="margin-bottom: 15px;">
+                                    <h4>${lab.name}</h4>
+                                    <p><strong>Systems:</strong> ${lab.systems}</p>
+                                    <p>${lab.description}</p>
+                                </div>
+                            `;
+                        });
+                        document.getElementById('labDetails').innerHTML = labHTML;
+                        
+                        // Populate facilities
+                        let facilitiesHTML = '<ul>';
+                        deptData.facilities.forEach(facility => {
+                            facilitiesHTML += `<li>${facility}</li>`;
+                        });
+                        facilitiesHTML += '</ul>';
+                        document.getElementById('facilitiesDetails').innerHTML = facilitiesHTML;
+                        
+                        // Populate repair details
+                        let repairHTML = '<table style="width: 100%; border-collapse: collapse;">';
+                        repairHTML += `
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Challan ID</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Date</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Status</th>
+                            </tr>
+                        `;
+                        deptData.repairs.forEach(repair => {
+                            repairHTML += `
+                                <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">${repair.id}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">${repair.date}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">${repair.description}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">${repair.status}</td>
+                                </tr>
+                            `;
+                        });
+                        repairHTML += '</table>';
+                        document.getElementById('repairDetails').innerHTML = repairHTML;
+                        
+                        // Show department details page
+                        document.querySelectorAll('.page').forEach(page => {
+                            page.classList.remove('active');
+                        });
+                        document.getElementById('deptDetailsPage').classList.add('active');
+                        
+                        // Close sidebar on mobile
+                        document.getElementById('sidebar').classList.remove('active');
+                    }
+                });
+            });
+            // Header navigation buttons functionality
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Hide all pages
+                    document.querySelectorAll('.page').forEach(page => {
+                        page.classList.remove('active');
+                    });
+
+                    // Show target page
+                    document.getElementById(targetPage + 'Page').classList.add('active');
+                    
+                    // Close sidebar if open
+                    document.getElementById('sidebar').classList.remove('active');
+                });
+            });    
+        });   
+    </script> 
+</body>
+</html>
